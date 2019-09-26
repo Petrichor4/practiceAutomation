@@ -40,6 +40,5 @@ module.exports = {
             .click('//button[@class="sc-uJMKN fpBmEu sc-ifAKCX kvYMhQ"]')
             .click('//div[contains(text(), "Dancing With The Stars: Latin Cardio DVD")]')
             .verify.containsText('//div[@class="sc-bdVaJa iyjQMV"]', 'Dancing With The Stars: Latin Cardio DVD')
-            .pause()
     }
 }
