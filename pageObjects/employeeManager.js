@@ -8,6 +8,8 @@ module.exports = {
         save: '[name="save"]',
         cancel: '[name="cancel"]',
         addemployee: '[name="addEmployee"]',
-        id: '[name="employeeID"]'
+        id: '[name="employeeID"]',
+        redline: '//input[class="materialInput invalidInfo"]',
+        locateStrategy: 'Xpath'
     }
 }

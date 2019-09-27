@@ -21,7 +21,7 @@ module.exports = {
             title: 'Manager'
         }
         $$$
-            //testing the information persists
+            //testing if the information persists
             .click('[name="employee1"]')
             .verify.containsText('@id', '1')
             .clearValue('@name')
@@ -80,6 +80,29 @@ module.exports = {
             .verify.value('@name', employeeinfo.name)
             .verify.value('@phone', employeeinfo.phone)
             .verify.value('@title', employeeinfo.title)
-    }
+    },
+    'Error Test': browser => {
+        var employee ={
+            toolong: 'asdfasdfasdfasdfasdfasdfasdfasfasfasfasfasfasfasfasfasfasfasfasfasfasfasfasfasfasf'
+        }
+        //bug in the code you can save the name and title field if it just has spaces in it 
+        $$$
+            .click('[name="employee1"]')
+            .clearValue('@name')
+            .setValue('@name', ' ')
+            .click('@save')
+            .verify.elementPresent('@redline')
+            // .pause()
+            // testing that the red line does not persist to other employee pages
+        //     .api.refresh()
+        // $$$
+        //     .click('[name="employee1"]')
+        //     .setValue('@name', employee.toolong)
+        //     .click('@save')
+        //     .click('[name="employee2"]')
+        //     .verify.elementNotVisible('@redline')
+        //     .pause(30000)
+
+}
 
 }
