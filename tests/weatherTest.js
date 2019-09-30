@@ -1,26 +1,57 @@
 var weatherPage
+var searchWeather = (weatherPage, search, result) => {
+    weatherPage
+        .setValue('@searchBar', search)
+        .click('@submitCity')
+        .waitForElementPresent('@resultCity')
+        .verify.containsText('@resultCity', result)
+        .api.back()
+}
+var invalidSearch = (weatherPage, search, result) =>{
+weatherPage
+    .setValue('@searchBar', search)
+    .click('@submitCity')
+    .waitForElementPresent('@errorMessage')
+    .verify.containsText('@errorMessage', result)
+    .api.back()
+
+}
 module.exports = {
     beforeEach: browser => {
         weatherPage = browser.page.weatherMan()
         weatherPage.navigate()
     },
     'Search for city': browser => {
-        weatherPage
-            .setValue('@searchBar', ['San Diego', browser.Keys.ENTER])
-            .waitForElementPresent('@resultCity')
-            .expect.element('@resultCity').text.to.equal('San Diego')
+        var cityInfo = {
+            search: 'San Diego',
+            result: 'San Diego'
+        }
+        // weatherPage
+        searchWeather(weatherPage, cityInfo.search, cityInfo.result)
+        // .setValue('@searchBar', ['San Diego', browser.Keys.ENTER])
+        // .waitForElementPresent('@resultCity')
+        // .expect.element('@resultCity').text.to.equal('San Diego')
     },
     'Search for zip': browser => {
+        var cityInfo = {
+            search: '95820',
+            result: 'Sacramento'
+        }
         weatherPage
-            .setValue('@searchBar', ['95820', browser.Keys.ENTER])
-            .waitForElementPresent('@resultCity')
-            .expect.element('@resultCity').text.to.equal('Sacramento')
+        searchWeather(weatherPage, cityInfo.search, cityInfo.result)
+        // .setValue('@searchBar', ['95820', browser.Keys.ENTER])
+        // .waitForElementPresent('@resultCity')
+        // .expect.element('@resultCity').text.to.equal('Sacramento')
     },
     'Search for blank': browser => {
-        weatherPage
-            .setValue('@searchBar', ['', browser.Keys.ENTER])
-            .waitForElementPresent('@errorMessage')
-            .expect.element('@errorMessage').text.to.equal('There was a problem fetching the weather!')
+        var cityInfo = {
+            search: '',
+            result: 'There was a problem fetching the weather!'
+        }
+        invalidSearch(weatherPage, cityInfo.search, cityInfo.result)
+        // .setValue('@searchBar', ['', browser.Keys.ENTER])
+        // .waitForElementPresent('@errorMessage')
+        // .expect.element('@errorMessage').text.to.equal('There was a problem fetching the weather!')
     },
     'Search for bad zip': browser => {
         weatherPage

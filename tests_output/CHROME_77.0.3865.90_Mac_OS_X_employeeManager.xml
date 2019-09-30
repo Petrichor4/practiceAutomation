@@ -4,15 +4,22 @@
             tests="1">
 
   <testsuite name="employeeManager"
-    errors="1" failures="0" hostname="" id="" package="employeeManager" skipped="0"
-    tests="1" time="0.5570" timestamp="">
+    errors="1" failures="0" hostname="" id="" package="employeeManager" skipped="1"
+    tests="1" time="0.5270" timestamp="">
   
-    <testcase name="Error Test" classname="employeeManager" time="0.5570" assertions="0">
+    <testcase name="employeeSelection" classname="employeeManager" time="0.5270" assertions="0">
     </testcase>
   
 
   
 
+  
+    
+    <testcase
+      name="Error Test" classname="employeeManager">
+      <skipped />
+    </testcase>
+    
   
   </testsuite>
 </testsuites>

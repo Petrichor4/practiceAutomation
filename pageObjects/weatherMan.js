@@ -4,6 +4,9 @@ module.exports = {
         searchBar: {
             selector: '.enter-location__input',
         },
+        submitCity:{
+            selector: '.enter-location__submit'
+        },
         resultCity: {
             selector: '//h3[@class="current-weather__location"]',
             locateStrategy: 'xpath'
