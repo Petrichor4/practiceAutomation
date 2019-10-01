@@ -1,21 +1,26 @@
 var weatherPage
-var searchWeather = (weatherPage, search, result) => {
+var searchWeather = (weatherPage, data) => {
+    weatherPage
+        .setValue('@searchBar', data.search)
+        .click('@submitCity')
+        .waitForElementPresent('@resultCity')
+        .verify.containsText('@resultCity', data.result)
+        .api.back()
+}
+var invalidSearch = (weatherPage, search, result) => {
     weatherPage
         .setValue('@searchBar', search)
         .click('@submitCity')
-        .waitForElementPresent('@resultCity')
-        .verify.containsText('@resultCity', result)
+        .waitForElementPresent('@errorMessage')
+        .verify.containsText('@errorMessage', result)
         .api.back()
 }
-var invalidSearch = (weatherPage, search, result) =>{
-weatherPage
-    .setValue('@searchBar', search)
-    .click('@submitCity')
-    .waitForElementPresent('@errorMessage')
-    .verify.containsText('@errorMessage', result)
-    .api.back()
+var myData = [ 
+   {search: '84601', result: 'Provo'}, 
+   {search: 'San Francisco', result: 'San Francisco'},
+   {search: 'London', result: 'London'} 
+]
 
-}
 module.exports = {
     beforeEach: browser => {
         weatherPage = browser.page.weatherMan()
@@ -27,7 +32,7 @@ module.exports = {
             result: 'San Diego'
         }
         // weatherPage
-        searchWeather(weatherPage, cityInfo.search, cityInfo.result)
+        searchWeather(weatherPage,myData[0])
         // .setValue('@searchBar', ['San Diego', browser.Keys.ENTER])
         // .waitForElementPresent('@resultCity')
         // .expect.element('@resultCity').text.to.equal('San Diego')
@@ -38,7 +43,7 @@ module.exports = {
             result: 'Sacramento'
         }
         weatherPage
-        searchWeather(weatherPage, cityInfo.search, cityInfo.result)
+        searchWeather(weatherPage,myData[1])
         // .setValue('@searchBar', ['95820', browser.Keys.ENTER])
         // .waitForElementPresent('@resultCity')
         // .expect.element('@resultCity').text.to.equal('Sacramento')

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="0"
+            tests="4">
+
+  <testsuite name="mathMethodsTest"
+    errors="0" failures="0" hostname="" id="" package="mathMethodsTest" skipped="0"
+    tests="4" time="10.99" timestamp="">
+  
+    <testcase name="check addition" classname="mathMethodsTest" time="6.700" assertions="2">
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="check subtraction" classname="mathMethodsTest" time="1.346" assertions="2">
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="check division" classname="mathMethodsTest" time="1.648" assertions="2">
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="check multiplication" classname="mathMethodsTest" time="1.297" assertions="2">
+
+    
+
+    
+    </testcase>
+  
+
+  
+
+  
+  </testsuite>
+</testsuites>

@@ -4,7 +4,7 @@ module.exports = {
         searchBar: {
             selector: '.enter-location__input',
         },
-        submitCity:{
+        submitCity: {
             selector: '.enter-location__submit'
         },
         resultCity: {
