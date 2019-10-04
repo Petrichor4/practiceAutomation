@@ -1,15 +1,5 @@
 var home
-var fillup = (pageObjects,data)=>{
-    home
-        // .click('@drop1')
-        .click(data)
-        .pause(3000)
-        .click('@next')
-        .setValue('@city', data)
-        .click('@next')
-        
-        // .click(data)
-}
+var inputs = require('../testAssets/wizardTestAssets')
 module.exports = {
     beforeEach: browser => {
         home = browser.page.loanWizardPage()
@@ -18,7 +8,10 @@ module.exports = {
     after: browser => {
         home.end()
     },
-    'doit': browser =>{
-        fillup(home)
+    'doit': browser => {
+        home
+        inputs.forEach(test => {
+            home.Wizard(test)
+        })
     }
 }
